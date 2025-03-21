@@ -1,15 +1,13 @@
-
 import React, { useEffect, useRef } from "react";
+import videoFile from "../assets/RenderTest.mp4"; // Import video file
 
 const HeroSection: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // This would be for the real implementation with actual video
-    // For now we'll use a placeholder approach
     if (videoRef.current) {
-      videoRef.current.playbackRate = 0.8; // Slightly slower for more cinematic feel
+      videoRef.current.playbackRate = 0.8;
       videoRef.current.play().catch(error => {
         console.error("Video play failed:", error);
       });
@@ -17,16 +15,14 @@ const HeroSection: React.FC = () => {
 
     const handleScroll = () => {
       if (!sectionRef.current) return;
-      
+
       const scrollPosition = window.scrollY;
       const heroHeight = sectionRef.current.offsetHeight;
       const fadeStart = heroHeight * 0.2;
       const fadeEnd = heroHeight * 0.8;
       const opacity = 1 - Math.min(Math.max((scrollPosition - fadeStart) / (fadeEnd - fadeStart), 0), 1);
-      
-      if (sectionRef.current) {
-        sectionRef.current.style.opacity = opacity.toString();
-      }
+
+      sectionRef.current.style.opacity = opacity.toString();
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -39,7 +35,7 @@ const HeroSection: React.FC = () => {
       ref={sectionRef}
       className="relative w-full h-screen overflow-hidden"
     >
-      {/* Video background - in a real implementation, replace with actual video */}
+      {/* Video background */}
       <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/40 z-0">
         <video
           ref={videoRef}
@@ -50,9 +46,7 @@ const HeroSection: React.FC = () => {
           playsInline
           poster="https://images.unsplash.com/photo-1563089145-599997674d42?q=80&w=2070"
         >
-          {/* For the demo, we don't have the actual video, but would use something like this */}
-          <source src="/videos/showreel.mp4" type="video/mp4" />
-          {/* Fallback image if video fails to load */}
+          <source src={videoFile} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </div>
