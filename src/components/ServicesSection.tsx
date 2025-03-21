@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { 
   Layers, 
@@ -173,11 +172,6 @@ const ServicesSection: React.FC = () => {
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
           {services.map((service) => {
             const isHovered = hoveredService === service.id;
-            const isNeighborHovered = 
-              hoveredService !== null && 
-              hoveredService !== service.id && 
-              services.findIndex(s => s.id === hoveredService) - services.findIndex(s => s.id === service.id) <= 1 && 
-              services.findIndex(s => s.id === hoveredService) - services.findIndex(s => s.id === service.id) >= -1;
             
             return (
               <div 
@@ -185,8 +179,7 @@ const ServicesSection: React.FC = () => {
                 className={`relative rounded-2xl overflow-hidden transition-all duration-500 group cursor-pointer ${
                   hoveredService === null ? 'h-[180px]' : 
                   isHovered ? 'h-[250px] scale-110 z-20' : 
-                  isNeighborHovered ? 'h-[200px] scale-105 z-10' : 
-                  'h-[160px] scale-95 opacity-70'
+                  'h-[160px] scale-90 opacity-50'
                 }`}
                 onMouseEnter={() => setHoveredService(service.id)}
                 onMouseLeave={() => setHoveredService(null)}
@@ -209,7 +202,9 @@ const ServicesSection: React.FC = () => {
                       loading="lazy"
                     />
                   )}
-                  <div className={`absolute inset-0 ${theme === 'dark' ? 'bg-black/50' : 'bg-black/40'} group-hover:bg-black/30 transition-all duration-300`}></div>
+                  <div className={`absolute inset-0 ${theme === 'dark' ? 'bg-black/50' : 'bg-black/40'} ${
+                    isHovered ? 'opacity-30' : 'opacity-70'
+                  } transition-all duration-300`}></div>
                 </div>
                 
                 {/* Content */}
