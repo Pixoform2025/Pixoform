@@ -2,9 +2,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import { useTheme } from "@/contexts/ThemeContext";
 import { X } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { HoverCard, HoverCardTrigger, HoverCardContent } from "@/components/ui/hover-card";
 
 interface Client {
   name: string;
@@ -101,11 +98,9 @@ const ClientShowcase: React.FC = () => {
     
     const scroll = scrollRef.current;
     let scrollAmount = 0;
-    const step = 0.2; // Even slower scroll speed
+    const step = 0.5; // Slower scroll speed
     
     const infiniteScroll = () => {
-      if (!scroll) return;
-      
       scrollAmount += step;
       scroll.scrollLeft = scrollAmount;
       
@@ -126,66 +121,37 @@ const ClientShowcase: React.FC = () => {
   }, [isScrolling]);
 
   const handleMouseDown = (e: React.MouseEvent) => {
-    if (!scrollRef.current) return;
-    
     setIsScrolling(false);
     setIsDragging(true);
-    setStartX(e.pageX - scrollRef.current.offsetLeft);
-    setScrollLeft(scrollRef.current.scrollLeft);
-  };
-
-  const handleMouseLeave = () => {
-    if (isDragging) {
-      setIsDragging(false);
-      setTimeout(() => {
-        setIsScrolling(true);
-      }, 3000);
-    }
+    setStartX(e.pageX - (scrollRef.current?.offsetLeft || 0));
+    setScrollLeft(scrollRef.current?.scrollLeft || 0);
   };
 
   const handleMouseUp = () => {
     setIsDragging(false);
     setTimeout(() => {
-      setIsScrolling(true);
-    }, 3000);
+      if (!isDragging) setIsScrolling(true);
+    }, 3000); // Resume auto-scrolling after 3 seconds of inactivity
   };
 
   const handleMouseMove = (e: React.MouseEvent) => {
-    if (!isDragging || !scrollRef.current) return;
-    
+    if (!isDragging) return;
     e.preventDefault();
-    const x = e.pageX - scrollRef.current.offsetLeft;
-    const walk = (x - startX); // Direct 1:1 mapping for more natural scrolling
-    scrollRef.current.scrollLeft = scrollLeft - walk;
+    const x = e.pageX - (scrollRef.current?.offsetLeft || 0);
+    const walk = (x - startX) * 2; // Scroll speed multiplier
+    if (scrollRef.current) {
+      scrollRef.current.scrollLeft = scrollLeft - walk;
+    }
   };
 
-  // Handle touch events for mobile
-  const handleTouchStart = (e: React.TouchEvent) => {
-    if (!scrollRef.current) return;
-    
-    setIsScrolling(false);
-    setIsDragging(true);
-    setStartX(e.touches[0].clientX - scrollRef.current.offsetLeft);
-    setScrollLeft(scrollRef.current.scrollLeft);
-  };
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    if (!isDragging || !scrollRef.current) return;
-    
-    const x = e.touches[0].clientX - scrollRef.current.offsetLeft;
-    const walk = (x - startX);
-    scrollRef.current.scrollLeft = scrollLeft - walk;
-  };
-
-  const handleTouchEnd = () => {
+  const handleMouseLeave = () => {
     setIsDragging(false);
     setTimeout(() => {
       setIsScrolling(true);
     }, 3000);
   };
 
-  const showVideoPopup = (client: Client, e: React.MouseEvent) => {
-    if (isDragging) return; // Don't show popup if dragging
+  const showVideoPopup = (client: Client) => {
     setSelectedClient(client);
   };
 
@@ -206,14 +172,11 @@ const ClientShowcase: React.FC = () => {
         
         <div 
           ref={scrollRef} 
-          className="overflow-x-auto w-full cursor-grab scrollbar-none"
+          className="overflow-hidden w-full cursor-grab"
           onMouseDown={handleMouseDown}
           onMouseUp={handleMouseUp}
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
-          onTouchStart={handleTouchStart}
-          onTouchMove={handleTouchMove}
-          onTouchEnd={handleTouchEnd}
         >
           <div ref={containerRef} className="flex gap-8 py-4 w-max">
             {duplicatedClients.map((client, index) => (
@@ -254,11 +217,7 @@ const ClientShowcase: React.FC = () => {
                   <div className="absolute bottom-4 left-4">
                     <button 
                       className="text-sm font-medium text-white flex items-center hover:underline"
-                      onClick={(e) => {
-                        if (!isDragging) {
-                          showVideoPopup(client, e);
-                        }
-                      }}
+                      onClick={() => showVideoPopup(client)}
                     >
                       View Project
                       <svg className="ml-1 w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
