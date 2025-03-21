@@ -8,12 +8,12 @@ import WhyChooseSection from "@/components/WhyChooseSection";
 import GallerySection from "@/components/GallerySection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+import { useTheme } from "@/contexts/ThemeContext";
 
 const Index: React.FC = () => {
+  const { theme } = useTheme();
+  
   useEffect(() => {
-    // Add dark mode by default
-    document.documentElement.classList.add("dark");
-    
     // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
@@ -32,7 +32,7 @@ const Index: React.FC = () => {
   }, []);
 
   return (
-    <main className="min-h-screen bg-black text-white overflow-x-hidden">
+    <main className={`min-h-screen overflow-x-hidden ${theme === 'dark' ? 'bg-black text-white' : 'bg-white text-black'}`}>
       <Navbar />
       <HeroSection />
       <ClientShowcase />

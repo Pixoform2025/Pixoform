@@ -1,5 +1,6 @@
 
 import React, { useRef, useEffect } from "react";
+import { useTheme } from "@/contexts/ThemeContext";
 
 interface Client {
   name: string;
@@ -53,8 +54,13 @@ const clients: Client[] = [
   }
 ];
 
+// Duplicate clients for infinite scroll
+const duplicatedClients = [...clients, ...clients];
+
 const ClientShowcase: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const { theme } = useTheme();
   
   useEffect(() => {
     const handleParallax = () => {
@@ -73,68 +79,98 @@ const ClientShowcase: React.FC = () => {
     return () => window.removeEventListener('scroll', handleParallax);
   }, []);
 
+  useEffect(() => {
+    if (!scrollRef.current) return;
+    
+    const scroll = scrollRef.current;
+    let scrollAmount = 0;
+    const step = 1; // Controls the speed
+    
+    const infiniteScroll = () => {
+      scrollAmount += step;
+      scroll.scrollLeft = scrollAmount;
+      
+      // Reset scroll position when it reaches the end of first set
+      if (scrollAmount >= scroll.scrollWidth / 2) {
+        scrollAmount = 0;
+        scroll.scrollLeft = 0;
+      }
+      
+      requestAnimationFrame(infiniteScroll);
+    };
+    
+    const animation = requestAnimationFrame(infiniteScroll);
+    
+    return () => cancelAnimationFrame(animation);
+  }, []);
+
   return (
-    <section id="clients" className="py-20 bg-gradient-to-b from-black to-slate-900">
+    <section id="clients" className={`py-20 ${theme === 'dark' ? 'bg-gradient-to-b from-black to-slate-900' : 'bg-gradient-to-b from-white to-gray-100'}`}>
       <div className="container mx-auto px-6">
         <div className="mb-16 text-center">
-          <span className="inline-block px-3 py-1 text-xs font-medium tracking-wider glass rounded-full mb-4">
+          <span className={`inline-block px-3 py-1 text-xs font-medium tracking-wider ${theme === 'dark' ? 'glass' : 'bg-gray-100 border border-gray-200'} rounded-full mb-4`}>
             PROUD COLLABORATIONS
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gradient">
+          <h2 className={`text-3xl md:text-4xl font-bold mb-4 ${theme === 'dark' ? 'text-gradient' : 'text-gray-800'}`}>
             Trusted by Leading Brands
           </h2>
-          <p className="text-white/70 max-w-2xl mx-auto">
+          <p className={theme === 'dark' ? 'text-white/70 max-w-2xl mx-auto' : 'text-gray-600 max-w-2xl mx-auto'}>
             We've partnered with innovative brands across industries to create stunning visual experiences.
           </p>
         </div>
         
-        <div ref={containerRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {clients.map((client, index) => (
-            <div 
-              key={client.name}
-              className="client-card group glass rounded-2xl overflow-hidden transition-all duration-500 hover:glass-dark hover-lift hover-glow"
-              style={{ transitionDelay: `${index * 50}ms` }}
-            >
-              <div className="p-6">
-                <div className="flex items-center mb-6">
-                  <div className="h-12 w-12 overflow-hidden rounded-lg mr-4">
-                    <img 
-                      src={client.logoUrl} 
-                      alt={`${client.name} logo`} 
-                      className="h-full w-full object-contain" 
-                      loading="lazy"
-                    />
+        <div 
+          ref={scrollRef} 
+          className="overflow-hidden w-full"
+        >
+          <div ref={containerRef} className="flex gap-8 py-4 w-max">
+            {duplicatedClients.map((client, index) => (
+              <div 
+                key={`${client.name}-${index}`}
+                className={`client-card flex-shrink-0 w-[300px] md:w-[350px] group ${
+                  theme === 'dark' 
+                    ? 'glass rounded-2xl overflow-hidden transition-all duration-500 hover:glass-dark hover-lift hover-glow' 
+                    : 'bg-white rounded-2xl overflow-hidden shadow-md transition-all duration-500 hover:shadow-lg hover:-translate-y-1'
+                }`}
+                style={{ transitionDelay: `${index * 50}ms` }}
+              >
+                <div className="p-6">
+                  <div className="flex items-center mb-6">
+                    <div className="h-12 w-12 overflow-hidden rounded-lg mr-4">
+                      <img 
+                        src={client.logoUrl} 
+                        alt={`${client.name} logo`} 
+                        className="h-full w-full object-contain" 
+                        loading="lazy"
+                      />
+                    </div>
+                    <h3 className="text-xl font-bold">{client.name}</h3>
                   </div>
-                  <h3 className="text-xl font-bold">{client.name}</h3>
+                  <p className={theme === 'dark' ? 'text-white/70 mb-6' : 'text-gray-600 mb-6'}>
+                    {client.description}
+                  </p>
                 </div>
-                <p className="text-white/70 mb-6">{client.description}</p>
-              </div>
-              
-              <div className="relative h-48 overflow-hidden">
-                <img 
-                  src={client.imageUrl} 
-                  alt={`${client.name} project`} 
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-                <div className="absolute bottom-4 left-4">
-                  <a href="#" className="text-sm font-medium flex items-center hover:underline">
-                    View Project
-                    <svg className="ml-1 w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </a>
+                
+                <div className="relative h-48 overflow-hidden">
+                  <img 
+                    src={client.imageUrl} 
+                    alt={`${client.name} project`} 
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+                    loading="lazy"
+                  />
+                  <div className={`absolute inset-0 ${theme === 'dark' ? 'bg-gradient-to-t from-black/70 to-transparent' : 'bg-gradient-to-t from-black/50 to-transparent'}`}></div>
+                  <div className="absolute bottom-4 left-4">
+                    <a href="#" className="text-sm font-medium text-white flex items-center hover:underline">
+                      View Project
+                      <svg className="ml-1 w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </a>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
-
-        <div className="flex justify-center mt-16">
-          <a href="#" className="px-6 py-3 glass rounded-full font-medium hover:glass-dark transition-all duration-300 hover-lift">
-            View All Projects
-          </a>
+            ))}
+          </div>
         </div>
       </div>
     </section>

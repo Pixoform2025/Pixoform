@@ -11,6 +11,8 @@ import {
   Brush, 
   VideoIcon 
 } from "lucide-react";
+import { useTheme } from "@/contexts/ThemeContext";
+import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel";
 
 interface Service {
   id: string;
@@ -88,57 +90,72 @@ const services: Service[] = [
 
 const ServicesSection: React.FC = () => {
   const [activeService, setActiveService] = useState<Service | null>(null);
+  const { theme } = useTheme();
 
   return (
-    <section id="services" className="py-20 bg-gradient-to-b from-slate-900 to-black">
+    <section id="services" className={`py-20 ${theme === 'dark' ? 'bg-gradient-to-b from-slate-900 to-black' : 'bg-gradient-to-b from-gray-100 to-white'}`}>
       <div className="container mx-auto px-6">
         <div className="mb-16 text-center">
-          <span className="inline-block px-3 py-1 text-xs font-medium tracking-wider glass rounded-full mb-4">
+          <span className={`inline-block px-3 py-1 text-xs font-medium tracking-wider ${theme === 'dark' ? 'glass' : 'bg-gray-100 border border-gray-200'} rounded-full mb-4`}>
             OUR EXPERTISE
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gradient">
+          <h2 className={`text-3xl md:text-4xl font-bold mb-4 ${theme === 'dark' ? 'text-gradient' : 'text-gray-800'}`}>
             What We Offer
           </h2>
-          <p className="text-white/70 max-w-2xl mx-auto">
+          <p className={theme === 'dark' ? 'text-white/70 max-w-2xl mx-auto' : 'text-gray-600 max-w-2xl mx-auto'}>
             Comprehensive creative solutions for all your 3D, VFX, and media needs.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((service) => (
-            <div
-              key={service.id}
-              id={`service-${service.id}`}
-              className="glass rounded-2xl overflow-hidden group hover-lift transition-all duration-300"
-              onMouseEnter={() => setActiveService(service)}
-              onMouseLeave={() => setActiveService(null)}
-            >
-              <div className="p-6 h-full flex flex-col">
-                <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-colors duration-300 ${
-                  activeService?.id === service.id ? 'bg-white text-black' : 'glass'
-                }`}>
-                  {service.icon}
-                </div>
-                
-                <h3 className="text-xl font-bold mb-3">{service.title}</h3>
-                <p className="text-white/70 mb-6 flex-grow">{service.description}</p>
-                
-                <div className="relative overflow-hidden rounded-xl h-40 mt-auto">
-                  <img 
-                    src={service.image} 
-                    alt={service.title} 
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-                  <div className="absolute bottom-0 left-0 w-full p-4">
-                    <div className="h-1 w-0 bg-white rounded-full transition-all duration-300 group-hover:w-full"></div>
+        <Carousel className="w-full max-w-5xl mx-auto">
+          <CarouselContent>
+            {services.map((service) => (
+              <CarouselItem key={service.id} className="md:basis-1/2 lg:basis-1/3">
+                <div 
+                  className={`h-full mx-2 ${
+                    theme === 'dark' 
+                      ? 'glass rounded-2xl overflow-hidden group transition-all duration-300' 
+                      : 'bg-white rounded-2xl overflow-hidden shadow-md group transition-all duration-300 hover:shadow-lg'
+                  }`}
+                  onMouseEnter={() => setActiveService(service)}
+                  onMouseLeave={() => setActiveService(null)}
+                >
+                  <div className="relative h-48 overflow-hidden">
+                    <img 
+                      src={service.image} 
+                      alt={service.title} 
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+                      loading="lazy"
+                    />
+                    <div className={`absolute inset-0 ${theme === 'dark' ? 'bg-gradient-to-t from-black/70 to-transparent' : 'bg-gradient-to-t from-black/50 to-transparent'}`}></div>
+                    <div className="absolute bottom-0 left-0 w-full p-4">
+                      <div className="h-1 w-0 bg-white rounded-full transition-all duration-300 group-hover:w-full"></div>
+                    </div>
+                  </div>
+
+                  <div className="p-6">
+                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-colors duration-300 ${
+                      activeService?.id === service.id 
+                        ? theme === 'dark' ? 'bg-white text-black' : 'bg-gray-900 text-white' 
+                        : theme === 'dark' ? 'glass' : 'bg-gray-100'
+                    }`}>
+                      {service.icon}
+                    </div>
+                    
+                    <h3 className="text-xl font-bold mb-3">{service.title}</h3>
+                    <p className={theme === 'dark' ? 'text-white/70' : 'text-gray-600'}>
+                      {service.description}
+                    </p>
                   </div>
                 </div>
-              </div>
-            </div>
-          ))}
-        </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <div className="hidden md:block">
+            <CarouselPrevious className={`-left-12 ${theme === 'light' ? 'border-gray-300 text-gray-700' : ''}`} />
+            <CarouselNext className={`-right-12 ${theme === 'light' ? 'border-gray-300 text-gray-700' : ''}`} />
+          </div>
+        </Carousel>
       </div>
     </section>
   );
