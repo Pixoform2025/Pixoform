@@ -98,9 +98,11 @@ const ClientShowcase: React.FC = () => {
     
     const scroll = scrollRef.current;
     let scrollAmount = 0;
-    const step = 0.5; // Slower scroll speed
+    const step = 0.3; // Slower scroll speed
     
     const infiniteScroll = () => {
+      if (!scroll) return;
+      
       scrollAmount += step;
       scroll.scrollLeft = scrollAmount;
       
@@ -121,31 +123,62 @@ const ClientShowcase: React.FC = () => {
   }, [isScrolling]);
 
   const handleMouseDown = (e: React.MouseEvent) => {
+    if (!scrollRef.current) return;
+    
     setIsScrolling(false);
     setIsDragging(true);
-    setStartX(e.pageX - (scrollRef.current?.offsetLeft || 0));
-    setScrollLeft(scrollRef.current?.scrollLeft || 0);
+    setStartX(e.pageX - scrollRef.current.offsetLeft);
+    setScrollLeft(scrollRef.current.scrollLeft);
+  };
+
+  const handleMouseLeave = () => {
+    if (isDragging) {
+      setIsDragging(false);
+      // Add a delay before resuming auto-scroll
+      setTimeout(() => {
+        setIsScrolling(true);
+      }, 3000);
+    }
   };
 
   const handleMouseUp = () => {
     setIsDragging(false);
+    // Add a delay before resuming auto-scroll
     setTimeout(() => {
-      if (!isDragging) setIsScrolling(true);
-    }, 3000); // Resume auto-scrolling after 3 seconds of inactivity
+      setIsScrolling(true);
+    }, 3000);
   };
 
   const handleMouseMove = (e: React.MouseEvent) => {
-    if (!isDragging) return;
+    if (!isDragging || !scrollRef.current) return;
+    
     e.preventDefault();
-    const x = e.pageX - (scrollRef.current?.offsetLeft || 0);
+    const x = e.pageX - scrollRef.current.offsetLeft;
     const walk = (x - startX) * 2; // Scroll speed multiplier
-    if (scrollRef.current) {
-      scrollRef.current.scrollLeft = scrollLeft - walk;
-    }
+    scrollRef.current.scrollLeft = scrollLeft - walk;
   };
 
-  const handleMouseLeave = () => {
+  // Handle touch events for mobile
+  const handleTouchStart = (e: React.TouchEvent) => {
+    if (!scrollRef.current) return;
+    
+    setIsScrolling(false);
+    setIsDragging(true);
+    setStartX(e.touches[0].clientX - scrollRef.current.offsetLeft);
+    setScrollLeft(scrollRef.current.scrollLeft);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!isDragging || !scrollRef.current) return;
+    
+    const x = e.touches[0].clientX - scrollRef.current.offsetLeft;
+    const walk = (x - startX) * 2;
+    scrollRef.current.scrollLeft = scrollLeft - walk;
+  };
+
+  const handleTouchEnd = () => {
     setIsDragging(false);
+    // Add a delay before resuming auto-scroll
     setTimeout(() => {
       setIsScrolling(true);
     }, 3000);
@@ -172,11 +205,14 @@ const ClientShowcase: React.FC = () => {
         
         <div 
           ref={scrollRef} 
-          className="overflow-hidden w-full cursor-grab"
+          className="overflow-x-auto w-full cursor-grab scrollbar-none"
           onMouseDown={handleMouseDown}
           onMouseUp={handleMouseUp}
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
         >
           <div ref={containerRef} className="flex gap-8 py-4 w-max">
             {duplicatedClients.map((client, index) => (
