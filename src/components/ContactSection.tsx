@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { Mail, Phone, MessageSquare, Send, Check } from "lucide-react";
 import { toast } from "sonner";
+import { useTheme } from "@/contexts/ThemeContext";
 
 const ContactSection: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -11,6 +12,7 @@ const ContactSection: React.FC = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const { theme } = useTheme();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -36,32 +38,32 @@ const ContactSection: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="py-20 bg-gradient-to-b from-black to-slate-900">
+    <section id="contact" className={`py-20 ${theme === 'dark' ? 'bg-gradient-to-b from-black to-slate-900' : 'bg-gradient-to-b from-white to-gray-100'}`}>
       <div className="container mx-auto px-6">
         <div className="mb-16 text-center">
-          <span className="inline-block px-3 py-1 text-xs font-medium tracking-wider glass rounded-full mb-4">
+          <span className={`inline-block px-3 py-1 text-xs font-medium tracking-wider ${theme === 'dark' ? 'glass' : 'bg-gray-100 border border-gray-200'} rounded-full mb-4`}>
             GET IN TOUCH
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gradient">
+          <h2 className={`text-3xl md:text-4xl font-bold mb-4 ${theme === 'dark' ? 'text-gradient' : 'text-gray-800'}`}>
             Contact Us
           </h2>
-          <p className="text-white/70 max-w-2xl mx-auto">
+          <p className={theme === 'dark' ? 'text-white/70 max-w-2xl mx-auto' : 'text-gray-600 max-w-2xl mx-auto'}>
             Ready to discuss your project? Contact us for a consultation and quote.
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-10">
           <div className="lg:col-span-2 space-y-6">
-            <div className="glass rounded-2xl p-6 hover-lift transition-all duration-300">
+            <div className={`${theme === 'dark' ? 'glass' : 'bg-white shadow-md'} rounded-2xl p-6 hover-lift transition-all duration-300`}>
               <div className="flex items-start">
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center glass mr-4">
+                <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${theme === 'dark' ? 'glass' : 'bg-gray-100'} mr-4`}>
                   <Mail className="w-5 h-5" />
                 </div>
                 <div>
                   <h3 className="text-lg font-medium mb-1">Email</h3>
                   <a 
                     href="mailto:pixoform@gmail.com"
-                    className="text-white/70 hover:text-white transition-colors"
+                    className={`${theme === 'dark' ? 'text-white/70 hover:text-white' : 'text-gray-600 hover:text-gray-900'} transition-colors`}
                   >
                     pixoform@gmail.com
                   </a>
@@ -69,16 +71,16 @@ const ContactSection: React.FC = () => {
               </div>
             </div>
 
-            <div className="glass rounded-2xl p-6 hover-lift transition-all duration-300">
+            <div className={`${theme === 'dark' ? 'glass' : 'bg-white shadow-md'} rounded-2xl p-6 hover-lift transition-all duration-300`}>
               <div className="flex items-start">
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center glass mr-4">
+                <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${theme === 'dark' ? 'glass' : 'bg-gray-100'} mr-4`}>
                   <Phone className="w-5 h-5" />
                 </div>
                 <div>
                   <h3 className="text-lg font-medium mb-1">Phone</h3>
                   <a 
                     href="tel:+917045131964"
-                    className="text-white/70 hover:text-white transition-colors"
+                    className={`${theme === 'dark' ? 'text-white/70 hover:text-white' : 'text-gray-600 hover:text-gray-900'} transition-colors`}
                   >
                     +91 7045131964
                   </a>
@@ -86,16 +88,16 @@ const ContactSection: React.FC = () => {
               </div>
             </div>
 
-            <div className="glass rounded-2xl p-6 hover-lift transition-all duration-300">
+            <div className={`${theme === 'dark' ? 'glass' : 'bg-white shadow-md'} rounded-2xl p-6 hover-lift transition-all duration-300`}>
               <div className="flex items-start">
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center glass mr-4">
+                <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${theme === 'dark' ? 'glass' : 'bg-gray-100'} mr-4`}>
                   <MessageSquare className="w-5 h-5" />
                 </div>
                 <div>
                   <h3 className="text-lg font-medium mb-1">WhatsApp</h3>
                   <a 
                     href="https://wa.me/917045131964"
-                    className="text-white/70 hover:text-white transition-colors"
+                    className={`${theme === 'dark' ? 'text-white/70 hover:text-white' : 'text-gray-600 hover:text-gray-900'} transition-colors`}
                     target="_blank" 
                     rel="noreferrer"
                   >
@@ -107,10 +109,10 @@ const ContactSection: React.FC = () => {
           </div>
 
           <div className="lg:col-span-3">
-            <form onSubmit={handleSubmit} className="glass rounded-2xl p-8">
+            <form onSubmit={handleSubmit} className={`${theme === 'dark' ? 'glass' : 'bg-white shadow-md'} rounded-2xl p-8`}>
               <div className="grid grid-cols-1 gap-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium mb-2">
+                  <label htmlFor="name" className={`block text-sm font-medium mb-2 ${theme === 'dark' ? 'text-white' : 'text-gray-700'}`}>
                     Your Name
                   </label>
                   <input
@@ -120,13 +122,17 @@ const ContactSection: React.FC = () => {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-white/30 focus:outline-none focus:ring-0 transition-all"
+                    className={`w-full px-4 py-3 rounded-xl ${
+                      theme === 'dark' 
+                        ? 'bg-white/5 border border-white/10 focus:border-white/30' 
+                        : 'bg-gray-50 border border-gray-200 focus:border-gray-300'
+                    } focus:outline-none focus:ring-0 transition-all`}
                     placeholder="John Doe"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium mb-2">
+                  <label htmlFor="email" className={`block text-sm font-medium mb-2 ${theme === 'dark' ? 'text-white' : 'text-gray-700'}`}>
                     Email Address
                   </label>
                   <input
@@ -136,13 +142,17 @@ const ContactSection: React.FC = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-white/30 focus:outline-none focus:ring-0 transition-all"
+                    className={`w-full px-4 py-3 rounded-xl ${
+                      theme === 'dark' 
+                        ? 'bg-white/5 border border-white/10 focus:border-white/30' 
+                        : 'bg-gray-50 border border-gray-200 focus:border-gray-300'
+                    } focus:outline-none focus:ring-0 transition-all`}
                     placeholder="john@example.com"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium mb-2">
+                  <label htmlFor="message" className={`block text-sm font-medium mb-2 ${theme === 'dark' ? 'text-white' : 'text-gray-700'}`}>
                     Your Message
                   </label>
                   <textarea
@@ -152,7 +162,11 @@ const ContactSection: React.FC = () => {
                     onChange={handleChange}
                     required
                     rows={5}
-                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-white/30 focus:outline-none focus:ring-0 transition-all resize-none"
+                    className={`w-full px-4 py-3 rounded-xl ${
+                      theme === 'dark' 
+                        ? 'bg-white/5 border border-white/10 focus:border-white/30' 
+                        : 'bg-gray-50 border border-gray-200 focus:border-gray-300'
+                    } focus:outline-none focus:ring-0 transition-all resize-none`}
                     placeholder="Tell us about your project..."
                   ></textarea>
                 </div>
@@ -163,8 +177,10 @@ const ContactSection: React.FC = () => {
                     disabled={isSubmitting || isSubmitted}
                     className={`w-full py-4 px-6 rounded-xl flex items-center justify-center font-medium transition-all duration-300 ${
                       isSubmitted
-                        ? "bg-green-500 hover:bg-green-600"
-                        : "glass hover:glass-dark"
+                        ? "bg-green-500 hover:bg-green-600 text-white"
+                        : theme === 'dark'
+                          ? "glass hover:glass-dark"
+                          : "bg-gray-900 text-white hover:bg-black"
                     } hover-lift`}
                   >
                     {isSubmitting ? (

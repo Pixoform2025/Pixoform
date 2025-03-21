@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from "react";
 import { Cpu, Zap, RotateCw, CrownIcon, Timer } from "lucide-react";
+import { useTheme } from "@/contexts/ThemeContext";
 
 interface Feature {
   icon: React.ReactNode;
@@ -52,6 +53,7 @@ const stats: Stat[] = [
 const WhyChooseSection: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [counters, setCounters] = useState<number[]>(stats.map(() => 0));
+  const { theme } = useTheme();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -102,16 +104,16 @@ const WhyChooseSection: React.FC = () => {
   }, [isVisible]);
 
   return (
-    <section id="why-choose" className="py-20 bg-gradient-to-b from-black to-slate-900">
+    <section id="why-choose" className={`py-20 ${theme === 'dark' ? 'bg-gradient-to-b from-black to-slate-900' : 'bg-gradient-to-b from-white to-gray-100'}`}>
       <div className="container mx-auto px-6">
         <div className="mb-16 text-center">
-          <span className="inline-block px-3 py-1 text-xs font-medium tracking-wider glass rounded-full mb-4">
+          <span className={`inline-block px-3 py-1 text-xs font-medium tracking-wider ${theme === 'dark' ? 'glass' : 'bg-gray-100 border border-gray-200'} rounded-full mb-4`}>
             WHY CHOOSE US
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gradient">
+          <h2 className={`text-3xl md:text-4xl font-bold mb-4 ${theme === 'dark' ? 'text-gradient' : 'text-gray-800'}`}>
             What Makes Pixoform Unique
           </h2>
-          <p className="text-white/70 max-w-2xl mx-auto">
+          <p className={theme === 'dark' ? 'text-white/70 max-w-2xl mx-auto' : 'text-gray-600 max-w-2xl mx-auto'}>
             We combine technical expertise with creative vision to deliver exceptional digital experiences.
           </p>
         </div>
@@ -120,12 +122,12 @@ const WhyChooseSection: React.FC = () => {
           {stats.map((stat, index) => (
             <div 
               key={stat.label} 
-              className="glass rounded-2xl p-8 text-center hover-lift"
+              className={`${theme === 'dark' ? 'glass' : 'bg-white shadow-md'} rounded-2xl p-8 text-center hover-lift`}
             >
-              <div className="text-4xl md:text-5xl font-bold mb-2 text-gradient">
+              <div className={`text-4xl md:text-5xl font-bold mb-2 ${theme === 'dark' ? 'text-gradient' : 'text-gray-800'}`}>
                 {isVisible ? counters[index] : 0}{stat.suffix}
               </div>
-              <p className="text-white/70">{stat.label}</p>
+              <p className={theme === 'dark' ? 'text-white/70' : 'text-gray-600'}>{stat.label}</p>
             </div>
           ))}
         </div>
@@ -134,7 +136,7 @@ const WhyChooseSection: React.FC = () => {
           {features.map((feature, index) => (
             <div 
               key={feature.title}
-              className="glass rounded-2xl p-6 hover-lift transition-all duration-300"
+              className={`${theme === 'dark' ? 'glass' : 'bg-white shadow-md'} rounded-2xl p-6 hover-lift transition-all duration-300`}
               style={{ 
                 animationDelay: `${index * 100}ms`,
                 opacity: isVisible ? 1 : 0,
@@ -143,11 +145,11 @@ const WhyChooseSection: React.FC = () => {
                 transitionDelay: `${index * 100}ms`
               }}
             >
-              <div className="w-12 h-12 rounded-xl flex items-center justify-center glass mb-6">
+              <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${theme === 'dark' ? 'glass' : 'bg-gray-100'} mb-6`}>
                 {feature.icon}
               </div>
               <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
-              <p className="text-white/70">{feature.description}</p>
+              <p className={theme === 'dark' ? 'text-white/70' : 'text-gray-600'}>{feature.description}</p>
             </div>
           ))}
         </div>

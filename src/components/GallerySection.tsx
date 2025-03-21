@@ -171,14 +171,16 @@ const GallerySection: React.FC = () => {
     return () => clearInterval(timer);
   }, [selectedItem, currentImageIndex]);
 
-  const nextImage = () => {
+  const nextImage = (e: React.MouseEvent) => {
+    e.stopPropagation();
     if (!selectedItem) return;
     setCurrentImageIndex(prev => 
       prev === selectedItem.images.length - 1 ? 0 : prev + 1
     );
   };
 
-  const prevImage = () => {
+  const prevImage = (e: React.MouseEvent) => {
+    e.stopPropagation();
     if (!selectedItem) return;
     setCurrentImageIndex(prev => 
       prev === 0 ? selectedItem.images.length - 1 : prev - 1
@@ -258,21 +260,21 @@ const GallerySection: React.FC = () => {
       {selectedItem && (
         <div className="fixed inset-0 z-50 bg-black/95 backdrop-blur-lg flex items-center justify-center p-4 animate-fade-in">
           <button 
-            className="absolute top-6 right-6 text-white/70 hover:text-white"
+            className="absolute top-6 right-6 text-white/70 hover:text-white z-50"
             onClick={() => setSelectedItem(null)}
           >
             <X className="w-8 h-8" />
           </button>
           
           <button 
-            className="absolute left-6 top-1/2 -translate-y-1/2 text-white/70 hover:text-white p-2 rounded-full bg-black/30"
+            className="absolute left-6 top-1/2 -translate-y-1/2 text-white/70 hover:text-white p-2 rounded-full bg-black/30 z-50"
             onClick={prevImage}
           >
             <ChevronLeft className="w-8 h-8" />
           </button>
           
           <button 
-            className="absolute right-6 top-1/2 -translate-y-1/2 text-white/70 hover:text-white p-2 rounded-full bg-black/30"
+            className="absolute right-6 top-1/2 -translate-y-1/2 text-white/70 hover:text-white p-2 rounded-full bg-black/30 z-50"
             onClick={nextImage}
           >
             <ChevronRight className="w-8 h-8" />
