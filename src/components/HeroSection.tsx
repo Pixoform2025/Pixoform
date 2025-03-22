@@ -44,7 +44,6 @@ const HeroSection: React.FC = () => {
           muted
           loop
           playsInline
-          poster="https://images.unsplash.com/photo-1563089145-599997674d42?q=80&w=2070"
         >
           <source src={videoFile} type="video/mp4" />
           Your browser does not support the video tag.
