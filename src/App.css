@@ -8,13 +8,22 @@
 .scroll-container {
   overflow-x: auto !important;
   pointer-events: all !important;
-  cursor: grab !important;
-  user-select: none !important; /* Prevents selection issues */
-  -webkit-user-drag: none !important;
-  -webkit-user-select: none !important;
-  -moz-user-select: none !important;
-  -ms-user-select: none !important;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
 }
+
+.scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+.client-card img {
+  pointer-events: none !important;
+}
+
+body {
+  user-select: none !important;
+}
+
 
 .scroll-container:active {
   cursor: grabbing !important;

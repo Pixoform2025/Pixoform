@@ -17,6 +17,7 @@ import {
   Camera
 } from "lucide-react";
 import { useTheme } from "@/contexts/ThemeContext";
+import Earbuds_Render from "../assets/Earbuds_Render.mp4";
 
 interface Service {
   id: string;
@@ -34,7 +35,7 @@ const services: Service[] = [
     description: "High-end promotional visuals for consumer electronics, automotive, and lifestyle products.",
     icon: <Layers className="w-6 h-6" />,
     image: "https://images.unsplash.com/photo-1563089145-599997674d42?q=80&w=2070",
-    video: "https://static.videezy.com/system/resources/previews/000/021/534/original/rotating-pills-on-black-background-realistic-3d-animation.mp4"
+    video: Earbuds_Render
   },
   {
     id: "arch",
