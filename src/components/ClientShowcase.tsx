@@ -167,6 +167,19 @@ const ClientShowcase: React.FC = () => {
                   ? 'glass rounded-2xl overflow-hidden transition-all duration-500 hover:glass-dark hover-lift hover-glow'
                   : 'bg-white rounded-2xl overflow-hidden shadow-md transition-all duration-500 hover:shadow-lg hover:-translate-y-1'
                   }`}
+                  onMouseEnter={(e) => {
+                    const video = e.currentTarget.querySelector("video");
+                    if (video) {
+                      video.currentTime = 0; // Restart video on hover
+                      video.play();
+                    }
+                  }}  
+                  onMouseLeave={(e) => {
+                    const video = e.currentTarget.querySelector("video");
+                    if (video) {
+                      video.pause();
+                    }
+                  }}  
               >
                 <div className="p-6">
                   <div className="flex items-center mb-4">

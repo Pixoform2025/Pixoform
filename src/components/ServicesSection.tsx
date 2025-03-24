@@ -18,6 +18,22 @@ import {
 } from "lucide-react";
 import { useTheme } from "@/contexts/ThemeContext";
 import Earbuds_Render from "../assets/Earbuds_Render.mp4";
+import product from "../assets/services/product.webp";
+import arch from "../assets/services/arch.webp";
+import vfx from "../assets/services/vfx.webp";
+import vr from "../assets/services/vr.webp";
+import interactive from "../assets/services/interactive.webp";
+import motion from "../assets/services/motion.webp";
+import cinematic from "../assets/services/cinematic.webp";
+import concept from "../assets/services/concept.webp";
+import ad from "../assets/services/ad.webp";
+import data from "../assets/services/data.webp";
+import logo from "../assets/services/logo.webp";
+import broadcast from "../assets/services/broadcast.webp";
+import photography from "../assets/services/photography.webp";
+import explainer from "../assets/services/explainer.webp";
+
+
 
 interface Service {
   id: string;
@@ -34,7 +50,7 @@ const services: Service[] = [
     title: "3D Product Animation",
     description: "High-end promotional visuals for consumer electronics, automotive, and lifestyle products.",
     icon: <Layers className="w-6 h-6" />,
-    image: "https://images.unsplash.com/photo-1563089145-599997674d42?q=80&w=2070",
+    image: product,
     video: Earbuds_Render
   },
   {
@@ -42,7 +58,7 @@ const services: Service[] = [
     title: "Architectural Visualization",
     description: "Realistic 3D interiors, exteriors, and urban environments for real estate and architectural firms.",
     icon: <Building2 className="w-6 h-6" />,
-    image: "https://images.unsplash.com/photo-1545169411-3d0aa77469c4?q=80&w=2070",
+    image: arch,
     video: "https://static.videezy.com/system/resources/previews/000/050/604/original/211104_05_Glow_4k_026.mp4"
   },
   {
@@ -50,7 +66,7 @@ const services: Service[] = [
     title: "VFX & CGI",
     description: "Seamless visual effects integration including explosions, particle simulations, and digital creatures.",
     icon: <Clapperboard className="w-6 h-6" />,
-    image: "https://images.unsplash.com/photo-1612544409030-e36a82d96022?q=80&w=2070",
+    image: vfx,
     video: "https://static.videezy.com/system/resources/previews/000/055/508/original/210305_04_Energy_4k_001.mp4"
   },
   {
@@ -58,7 +74,7 @@ const services: Service[] = [
     title: "VR/AR Development",
     description: "Immersive virtual and augmented reality experiences for enterprise, education, and entertainment.",
     icon: <Smartphone className="w-6 h-6" />,
-    image: "https://images.unsplash.com/photo-1617802690992-15d93263d3a9?q=80&w=2070",
+    image: vr,
     video: "https://static.videezy.com/system/resources/previews/000/056/919/original/37.mp4"
   },
   {
@@ -66,7 +82,7 @@ const services: Service[] = [
     title: "Interactive Media",
     description: "Web-based 3D configurators, simulations, and interactive product displays for enhanced user engagement.",
     icon: <Globe className="w-6 h-6" />,
-    image: "https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac?q=80&w=1932",
+    image: interactive,
     video: "https://static.videezy.com/system/resources/previews/000/047/802/original/200819_03_Business_4k_002.mp4"
   },
   {
@@ -74,7 +90,7 @@ const services: Service[] = [
     title: "Motion Graphics & UI Animation",
     description: "Dynamic interface animations, title sequences, and motion design for digital products and videos.",
     icon: <Sparkles className="w-6 h-6" />,
-    image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2070",
+    image: motion,
     video: "https://static.videezy.com/system/resources/previews/000/041/622/original/NEON-GEOMETRIC.mp4"
   },
   {
@@ -82,7 +98,7 @@ const services: Service[] = [
     title: "Cinematic Trailers",
     description: "Captivating game trailers, film title sequences, and promotional videos with cinematic quality.",
     icon: <Film className="w-6 h-6" />,
-    image: "https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?q=80&w=2069",
+    image: cinematic,
     video: "https://static.videezy.com/system/resources/previews/000/052/115/original/210728_02_SciFi_4k_029.mp4"
   },
   {
@@ -90,7 +106,7 @@ const services: Service[] = [
     title: "3D Concept & Character Design",
     description: "Original character creation, concept development, and asset design for games and films.",
     icon: <Brush className="w-6 h-6" />,
-    image: "https://images.unsplash.com/photo-1616161560197-e155d8d77032?q=80&w=2070",
+    image: concept,
     video: "https://static.videezy.com/system/resources/previews/000/056/000/original/210903_03_Shapes_4k_044.mp4"
   },
   {
@@ -98,47 +114,23 @@ const services: Service[] = [
     title: "Advertisement & Branding Videos",
     description: "High-impact promotional content, explainer videos, and brand identity animations.",
     icon: <VideoIcon className="w-6 h-6" />,
-    image: "https://images.unsplash.com/photo-1567443024551-f3e3a5e1a7a8?q=80&w=2070",
+    image: ad,
     video: "https://static.videezy.com/system/resources/previews/000/055/996/original/VITALIC-PROMO-RETRO.mp4"
-  },
-  {
-    id: "data",
-    title: "Data Visualization",
-    description: "Converting complex data into engaging, easy-to-understand visual representations and animations.",
-    icon: <LineChart className="w-6 h-6" />,
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070",
-    video: "https://static.videezy.com/system/resources/previews/000/045/582/original/20190820ChartsWipe4k03.mp4"
   },
   {
     id: "logo",
     title: "3D Logo Animation",
     description: "Dynamic and memorable logo animations that bring brand identities to life with depth and dimension.",
     icon: <PenTool className="w-6 h-6" />,
-    image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=2000",
+    image: logo,
     video: "https://static.videezy.com/system/resources/previews/000/042/910/original/GoldLogoAfterEffectsTemplate.mp4"
   },
   {
-    id: "simulation",
-    title: "Physics Simulations",
-    description: "Realistic physics-based simulations for product testing, scientific visualization, and creative effects.",
-    icon: <Cpu className="w-6 h-6" />,
-    image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=2065",
-    video: "https://static.videezy.com/system/resources/previews/000/042/997/original/Water-Animation-Pack.mp4"
-  },
-  {
-    id: "broadcast",
-    title: "Broadcast Graphics",
-    description: "Polished graphics, transitions, and animations for television, live events, and streaming productions.",
-    icon: <Tv className="w-6 h-6" />,
-    image: "https://images.unsplash.com/photo-1568438350562-2cae6d394ad0?q=80&w=1935",
-    video: "https://static.videezy.com/system/resources/previews/000/055/515/original/210408_02_Infographics_4k_039.mp4"
-  },
-  {
-    id: "product-cgi",
+    id: "photography",
     title: "Product CGI Photography",
     description: "Photorealistic 3D product renders that are indistinguishable from traditional photography.",
     icon: <Camera className="w-6 h-6" />,
-    image: "https://images.unsplash.com/photo-1589254065909-b7086229d08c?q=80&w=1974",
+    image: photography,
     video: "https://static.videezy.com/system/resources/previews/000/051/333/original/computer-monitor-laptop.mp4"
   },
   {
@@ -146,7 +138,7 @@ const services: Service[] = [
     title: "3D Explainer Videos",
     description: "Clear, engaging explainer animations that break down complex products, services, or concepts.",
     icon: <Coffee className="w-6 h-6" />,
-    image: "https://images.unsplash.com/photo-1551135049-8a33b5883817?q=80&w=2070",
+    image: explainer,
     video: "https://static.videezy.com/system/resources/previews/000/050/573/original/5G_Technology.mp4"
   }
 ];
@@ -156,7 +148,7 @@ const ServicesSection: React.FC = () => {
   const { theme } = useTheme();
 
   return (
-    <section id="services" className={`py-20 ${theme === 'dark' ? 'bg-gradient-to-b from-slate-900 to-black' : 'bg-gradient-to-b from-gray-100 to-white'}`}>
+    <section id="service" className={`py-20 ${theme === 'dark' ? 'bg-gradient-to-b from-slate-900 to-black' : 'bg-gradient-to-b from-gray-100 to-white'}`}>
       <div className="container mx-auto px-6">
         <div className="mb-16 text-center">
           <span className={`inline-block px-3 py-1 text-xs font-medium tracking-wider ${theme === 'dark' ? 'glass' : 'bg-gray-100 border border-gray-200'} rounded-full mb-4`}>
@@ -170,7 +162,7 @@ const ServicesSection: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-3 gap-10">
           {services.map((service) => {
             const isHovered = hoveredService === service.id;
             
@@ -178,9 +170,9 @@ const ServicesSection: React.FC = () => {
               <div 
                 key={service.id}
                 className={`relative rounded-2xl overflow-hidden transition-all duration-500 group cursor-pointer ${
-                  hoveredService === null ? 'h-[180px]' : 
-                  isHovered ? 'h-[250px] scale-110 z-20' : 
-                  'h-[160px] scale-90 opacity-50'
+                  hoveredService === null ? 'h-[200px]' : 
+                  isHovered ? 'h-[350px] scale-110 z-20' : 
+                  'h-[250px] scale-90 opacity-20'
                 }`}
                 onMouseEnter={() => setHoveredService(service.id)}
                 onMouseLeave={() => setHoveredService(null)}

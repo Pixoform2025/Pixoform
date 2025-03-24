@@ -37,16 +37,6 @@ const galleryItems: GalleryItem[] = [
     ]
   },
   {
-    id: "product-3",
-    category: "product",
-    title: "Electric Vehicle",
-    images: [
-      { url: "https://images.unsplash.com/photo-1556800572-1b8aedf82b5b?q=80&w=2070", alt: "Electric Vehicle 1" },
-      { url: "https://images.unsplash.com/photo-1620891549827-3f153a1a6672?q=80&w=1964", alt: "Electric Vehicle 2" },
-      { url: "https://images.unsplash.com/photo-1603386329225-868f9b1ee6c9?q=80&w=2069", alt: "Electric Vehicle 3" }
-    ]
-  },
-  {
     id: "arch-1",
     category: "arch",
     title: "Modern Interior",
