@@ -26,7 +26,7 @@ const clients: Client[] = [
     description: "High-end product visualization and animation for premium audio hardware.",
     logoUrl: "https://rdpro.in/wp-content/uploads/2021/06/rd-logo.png",
     imageUrl: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?q=80&w=1964",
-    videoUrl: "https://cdn.jsdelivr.net/gh/Pixoform2025/Pixoform@main/src/assets/Earbuds_Render.mp4?v=1"
+    videoUrl: "https://cdn.jsdelivr.net/gh/Pixoform2025/Pixoform@latest/src/assets/Earbuds_Render.mp4?v=1"
   },
   {
     name: "Robokart",
