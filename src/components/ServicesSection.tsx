@@ -51,7 +51,7 @@ const services: Service[] = [
     description: "High-end promotional visuals for consumer electronics, automotive, and lifestyle products.",
     icon: <Layers className="w-6 h-6" />,
     image: product,
-    video: "https://cdn.jsdelivr.net/gh/Pixoform2025/Pixoform@latest/src/assets/Earbuds_Render.mp4"
+    video: "https://cdn.jsdelivr.net/gh/Pixoform2025/Pixoform@latest/src/assets/Earbuds_Render.mp4?v=1"
   },
   {
     id: "arch",
