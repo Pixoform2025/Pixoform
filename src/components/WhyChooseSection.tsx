@@ -45,9 +45,9 @@ const features: Feature[] = [
 ];
 
 const stats: Stat[] = [
-  { value: 100, label: "Projects Completed", suffix: "+", duration: 2000 },
-  { value: 5, label: "Years of Experience", suffix: "+", duration: 1500 },
-  { value: 50, label: "Clients Served", suffix: "+", duration: 1800 },
+  { value: 20, label: "Projects Completed", suffix: "+", duration: 2000 },
+  { value: 2, label: "Years of Experience", suffix: "+", duration: 1500 },
+  { value: 5, label: "Clients Served", suffix: "+", duration: 1800 },
 ];
 
 const WhyChooseSection: React.FC = () => {

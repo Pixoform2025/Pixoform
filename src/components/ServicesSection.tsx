@@ -95,7 +95,7 @@ const services: Service[] = [
   },
   {
     id: "cinematic",
-    title: "Cinematic Trailers",
+    title: "Cinematics",
     description: "Captivating game trailers, film title sequences, and promotional videos with cinematic quality.",
     icon: <Film className="w-6 h-6" />,
     image: cinematic,
@@ -125,14 +125,14 @@ const services: Service[] = [
     image: logo,
     video: "https://static.videezy.com/system/resources/previews/000/042/910/original/GoldLogoAfterEffectsTemplate.mp4"
   },
-  {
+/*   {
     id: "photography",
-    title: "Product CGI Photography",
+    title: "Product Photography",
     description: "Photorealistic 3D product renders that are indistinguishable from traditional photography.",
     icon: <Camera className="w-6 h-6" />,
     image: photography,
     video: "https://static.videezy.com/system/resources/previews/000/051/333/original/computer-monitor-laptop.mp4"
-  },
+  }, */
   {
     id: "explainer",
     title: "3D Explainer Videos",
