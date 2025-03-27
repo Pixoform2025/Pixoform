@@ -45,7 +45,7 @@ const HeroSection: React.FC = () => {
           loop
           playsInline
         >
-          <source src="https://cdn.jsdelivr.net/gh/Pixoform2025/Pixoform@main/src/assets/Earbuds_Render.mp4" type="video/mp4" />
+          <source src="https://cdn.jsdelivr.net/gh/Pixoform2025/Pixoform@main/src/assets/RenderTest.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </div>

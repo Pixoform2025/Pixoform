@@ -19,14 +19,14 @@ const clients: Client[] = [
     description: "3D product visualization for pharmaceutical products and interactive medical animations.",
     logoUrl: CiplaLogo,
     imageUrl: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=2070",
-    videoUrl: "https://www.youtube.com/embed/uNCr7NdOJgw"
+    videoUrl: "https://cdn.jsdelivr.net/gh/Pixoform2025/Pixoform@main/src/assets/Cipla_Render.mp4"
   },
   {
     name: "RD Pro Earphones",
     description: "High-end product visualization and animation for premium audio hardware.",
     logoUrl: "https://rdpro.in/wp-content/uploads/2021/06/rd-logo.png",
     imageUrl: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?q=80&w=1964",
-    videoUrl: Earbuds_Render
+    videoUrl: "https://cdn.jsdelivr.net/gh/Pixoform2025/Pixoform@main/src/assets/Earbuds_Render.mp4"
   },
   {
     name: "Robokart",

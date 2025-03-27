@@ -51,7 +51,7 @@ const services: Service[] = [
     description: "High-end promotional visuals for consumer electronics, automotive, and lifestyle products.",
     icon: <Layers className="w-6 h-6" />,
     image: product,
-    video: Earbuds_Render
+    video: "https://cdn.jsdelivr.net/gh/Pixoform2025/Pixoform@main/src/assets/Earbuds_Render.mp4"
   },
   {
     id: "arch",
@@ -139,7 +139,7 @@ const services: Service[] = [
     description: "Clear, engaging explainer animations that break down complex products, services, or concepts.",
     icon: <Coffee className="w-6 h-6" />,
     image: explainer,
-    video: "https://static.videezy.com/system/resources/previews/000/050/573/original/5G_Technology.mp4"
+    video: "https://cdn.jsdelivr.net/gh/Pixoform2025/Pixoform@main/src/assets/ExplanationVideo.mp4"
   }
 ];
 
