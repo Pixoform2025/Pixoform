@@ -19,7 +19,7 @@ const clients: Client[] = [
     description: "3D product visualization for pharmaceutical products and interactive medical animations.",
     logoUrl: CiplaLogo,
     imageUrl: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=2070",
-    videoUrl: "https://cdn.jsdelivr.net/gh/Pixoform2025/Pixoform@main/src/assets/Cipla_Render.mp4"
+    videoUrl: "https://cdn.jsdelivr.net/gh/Pixoform2025/Pixoform@latest/src/assets/Cipla_Render.mp4"
   },
   {
     name: "RD Pro Earphones",
