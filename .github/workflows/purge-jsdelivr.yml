@@ -16,7 +16,8 @@ jobs:
         run: |
           # Iterate over all files in src/assets and purge them
           for file in $(find src/assets -type f); do
-            url="https://purge.jsdelivr.net/gh/Pixoform2025/Pixoform@latest/$file"
+            relative_path=${file#src/assets/}  # Remove src/assets/ from path
+            url="https://purge.jsdelivr.net/gh/Pixoform2025/Pixoform@latest/src/assets/$relative_path"
             echo "Purging: $url"
             curl -X GET "$url"
           done
