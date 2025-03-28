@@ -88,7 +88,7 @@ const services: Service[] = [
     description: "Dynamic augmented reality experiences for advertisements, education and entertainment.",
     icon: <PenTool className="w-6 h-6" />,
     image: ar,
-    video: "https://cdn.jsdelivr.net/gh/Pixoform2025/Pixoform@latest/src/assets/AR.mp4?v=2"
+    video: "https://cdn.jsdelivr.net/gh/Pixoform2025/Pixoform@latest/src/assets/AR_Render.mp4?v=2"
   },
   {
     id: "interactive",
