@@ -1,0 +1,14 @@
+name: Purge JSDelivr Cache
+
+on:
+  push:
+    branches:
+      - main  # Change this if your default branch is different
+
+jobs:
+  purge_cache:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Purge JSDelivr Cache
+        run: |
+          curl -X GET "https://purge.jsdelivr.net/gh/Pixoform2025/Pixoform@latest/src/assets"
