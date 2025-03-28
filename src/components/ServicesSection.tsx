@@ -35,15 +35,7 @@ import photography from "../assets/services/photography.webp";
 import explainer from "../assets/services/explainer.webp";
 import { useEffect } from "react";
 
-useEffect(() => {
-  services.forEach(service => {
-    if (service.video) {
-      const video = document.createElement("video");
-      video.src = service.video;
-      video.preload = "auto";
-    }
-  });
-}, []);
+
 
 
 
@@ -120,7 +112,7 @@ const services: Service[] = [
     description: "Captivating game trailers, film title sequences, and promotional videos with cinematic quality.",
     icon: <Film className="w-6 h-6" />,
     image: cinematic,
-    video: "https://cdn.jsdelivr.net/gh/Pixoform2025/Pixoform@latest/src/assets/Cinematic.mp4?v=1"
+    video: "https://cdn.jsdelivr.net/gh/Pixoform2025/Pixoform@latest/src/assets/Cinematic_Render.mp4?v=1"
   },
   {
     id: "concept",
@@ -128,7 +120,7 @@ const services: Service[] = [
     description: "Original character creation, concept development, and asset design for games and films.",
     icon: <Brush className="w-6 h-6" />,
     image: concept,
-    video: "https://cdn.jsdelivr.net/gh/Pixoform2025/Pixoform@latest/src/assets/Cinematic.mp4?v=1"
+    video: "https://cdn.jsdelivr.net/gh/Pixoform2025/Pixoform@latest/src/assets/Character_Render.mp4?v=1"
   },
   {
     id: "ad",
@@ -167,6 +159,16 @@ const services: Service[] = [
 const ServicesSection: React.FC = () => {
   const [hoveredService, setHoveredService] = useState<string | null>(null);
   const { theme } = useTheme();
+
+  useEffect(() => {
+    services.forEach(service => {
+      if (service.video) {
+        const video = document.createElement("video");
+        video.src = service.video;
+        video.preload = "auto";
+      }
+    });
+  }, []);
 
   return (
     <section id="service" className={`py-20 ${theme === 'dark' ? 'bg-gradient-to-b from-slate-900 to-black' : 'bg-gradient-to-b from-gray-100 to-white'}`}>

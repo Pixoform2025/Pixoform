@@ -1,18 +1,50 @@
-
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Mail, Phone, MessageSquare, Send, Check } from "lucide-react";
 import { toast } from "sonner";
 import { useTheme } from "@/contexts/ThemeContext";
+import FingerprintJS from "@fingerprintjs/fingerprintjs";
+import emailjs from "emailjs-com";
+
+// EmailJS credentials (Replace with your actual IDs)
+const SERVICE_ID = "your_service_id";
+const TEMPLATE_ID = "your_template_id";
+const USER_ID = "your_user_id";
 
 const ContactSection: React.FC = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: ""
-  });
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [deviceID, setDeviceID] = useState("");
   const { theme } = useTheme();
+
+  useEffect(() => {
+    const loadFingerprint = async () => {
+      const fp = await FingerprintJS.load();
+      const result = await fp.get();
+      setDeviceID(result.visitorId);
+    };
+    loadFingerprint();
+  }, []);
+
+  const canSendMessage = () => {
+    const today = new Date().toISOString().split("T")[0];
+    const messages = JSON.parse(localStorage.getItem("messages") || "{}");
+
+    if (!messages[deviceID]) messages[deviceID] = {};
+    if (!messages[deviceID][today]) messages[deviceID][today] = 0;
+
+    return messages[deviceID][today] < 2;
+  };
+
+  const updateMessageCount = () => {
+    const today = new Date().toISOString().split("T")[0];
+    const messages = JSON.parse(localStorage.getItem("messages") || "{}");
+
+    messages[deviceID] = messages[deviceID] || {};
+    messages[deviceID][today] = (messages[deviceID][today] || 0) + 1;
+
+    localStorage.setItem("messages", JSON.stringify(messages));
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -21,20 +53,30 @@ const ContactSection: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!canSendMessage()) {
+      toast.error("You have reached the daily limit of 2 messages per device.");
+      return;
+    }
+
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSubmitted(true);
-      toast.success("Message sent successfully! We'll get back to you soon.");
-      
-      // Reset form after showing success
-      setTimeout(() => {
-        setFormData({ name: "", email: "", message: "" });
-        setIsSubmitted(false);
-      }, 3000);
-    }, 1500);
+
+    emailjs.send(SERVICE_ID, TEMPLATE_ID, formData, USER_ID)
+      .then(() => {
+        setIsSubmitting(false);
+        setIsSubmitted(true);
+        toast.success("Message sent successfully! We'll get back to you soon.");
+        updateMessageCount();
+
+        setTimeout(() => {
+          setFormData({ name: "", email: "", message: "" });
+          setIsSubmitted(false);
+        }, 3000);
+      })
+      .catch(() => {
+        setIsSubmitting(false);
+        toast.error("Failed to send message. Please try again.");
+      });
   };
 
   return (
@@ -61,10 +103,7 @@ const ContactSection: React.FC = () => {
                 </div>
                 <div>
                   <h3 className="text-lg font-medium mb-1">Email</h3>
-                  <a 
-                    href="mailto:pixoform@gmail.com"
-                    className={`${theme === 'dark' ? 'text-white/70 hover:text-white' : 'text-gray-600 hover:text-gray-900'} transition-colors`}
-                  >
+                  <a href="mailto:pixoform@gmail.com" className={`${theme === 'dark' ? 'text-white/70 hover:text-white' : 'text-gray-600 hover:text-gray-900'} transition-colors`}>
                     pixoform@gmail.com
                   </a>
                 </div>
@@ -78,30 +117,8 @@ const ContactSection: React.FC = () => {
                 </div>
                 <div>
                   <h3 className="text-lg font-medium mb-1">Phone</h3>
-                  <a 
-                    href="tel:+917045131964"
-                    className={`${theme === 'dark' ? 'text-white/70 hover:text-white' : 'text-gray-600 hover:text-gray-900'} transition-colors`}
-                  >
+                  <a href="tel:+917045131964" className={`${theme === 'dark' ? 'text-white/70 hover:text-white' : 'text-gray-600 hover:text-gray-900'} transition-colors`}>
                     +91 7045131964
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div className={`${theme === 'dark' ? 'glass' : 'bg-white shadow-md'} rounded-2xl p-6 hover-lift transition-all duration-300`}>
-              <div className="flex items-start">
-                <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${theme === 'dark' ? 'glass' : 'bg-gray-100'} mr-4`}>
-                  <MessageSquare className="w-5 h-5" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-medium mb-1">WhatsApp</h3>
-                  <a 
-                    href="https://wa.me/917045131964"
-                    className={`${theme === 'dark' ? 'text-white/70 hover:text-white' : 'text-gray-600 hover:text-gray-900'} transition-colors`}
-                    target="_blank" 
-                    rel="noreferrer"
-                  >
-                    Send a message
                   </a>
                 </div>
               </div>
