@@ -9,6 +9,13 @@ jobs:
   purge_cache:
     runs-on: ubuntu-latest
     steps:
-      - name: Purge JSDelivr Cache
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Purge JSDelivr Cache for all assets
         run: |
-          curl -X GET "https://purge.jsdelivr.net/gh/Pixoform2025/Pixoform@latest/src/assets"
+          for file in $(find src/assets -type f); do
+            url="https://purge.jsdelivr.net/gh/Pixoform2025/Pixoform@latest/$file"
+            echo "Purging: $url"
+            curl -X GET "$url"
+          done
