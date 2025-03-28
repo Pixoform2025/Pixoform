@@ -162,6 +162,20 @@ const ClientShowcase: React.FC = () => {
                   }`}
 
 
+/*                  onMouseEnter={(e) => {
+                  const video = e.currentTarget.querySelector("video");
+                  if (video) {
+                    video.currentTime = 0; // Restart video on hover
+                    video.play();
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  const video = e.currentTarget.querySelector("video");
+                  if (video) {
+                    video.pause();
+                  }
+                }}
+ */
               >
                 <div className="p-6">
                   <div className="flex items-center mb-4">
@@ -182,14 +196,14 @@ const ClientShowcase: React.FC = () => {
                     loading="lazy"
                   />
 
-<video
-  src={client.videoUrl}
-  className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
-  muted
-  autoPlay
-  loop
-  playsInline
-/>
+                  <video
+                    src={client.videoUrl}
+                    className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
+                    muted
+                    autoPlay
+                    loop
+                    playsInline
+                  />
 
 
                 </div>
