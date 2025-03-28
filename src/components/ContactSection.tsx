@@ -6,9 +6,9 @@ import FingerprintJS from "@fingerprintjs/fingerprintjs";
 import emailjs from "emailjs-com";
 
 // EmailJS credentials (Replace with your actual IDs)
-const SERVICE_ID = "your_service_id";
-const TEMPLATE_ID = "your_template_id";
-const USER_ID = "your_user_id";
+const SERVICE_ID = "service_rt9zts5";
+const TEMPLATE_ID = "template_i7b9fss";
+const USER_ID = "AX3irI3rPblzCKZ7i";
 
 const ContactSection: React.FC = () => {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
