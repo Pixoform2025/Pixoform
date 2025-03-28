@@ -161,19 +161,7 @@ const ClientShowcase: React.FC = () => {
                   : 'bg-white rounded-2xl overflow-hidden shadow-md transition-all duration-500 hover:shadow-lg hover:-translate-y-1'
                   }`}
 
-                onMouseEnter={(e) => {
-                  const video = e.currentTarget.querySelector("video");
-                  if (video) {
-                    video.currentTime = 0; // Restart video on hover
-                    video.play();
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  const video = e.currentTarget.querySelector("video");
-                  if (video) {
-                    video.pause();
-                  }
-                }}
+
               >
                 <div className="p-6">
                   <div className="flex items-center mb-4">
@@ -194,13 +182,16 @@ const ClientShowcase: React.FC = () => {
                     loading="lazy"
                   />
 
-                  <video
-                    src={client.videoUrl}
-                    className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                    muted
-                    autoPlay
-                    loop
-                  />
+<video
+  src={client.videoUrl}
+  className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
+  muted
+  autoPlay
+  loop
+  playsInline
+/>
+
+
                 </div>
               </div>
             ))}
