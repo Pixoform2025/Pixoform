@@ -33,21 +33,14 @@ const clients: Client[] = [
     description: "3D visualization and animations for robotics products and educational kits.",
     logoUrl: "https://robokart.com/wp-content/uploads/2020/06/robokart-logo.png",
     imageUrl: "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?q=80&w=1964",
-    videoUrl: "https://www.youtube.com/embed/x8rXzxrW0eI"
+    videoUrl: "https://cdn.jsdelivr.net/gh/Pixoform2025/Pixoform@latest/src/assets/Robokart_Render.mp4?v=1"
   },
   {
     name: "Noise",
     description: "Product visualization and promotional content for smart wearables and audio devices.",
     logoUrl: "https://upload.wikimedia.org/wikipedia/commons/5/51/Noise_Logo.png",
     imageUrl: "https://images.unsplash.com/photo-1546868871-7041f2a55e12?q=80&w=1964",
-    videoUrl: "https://www.youtube.com/embed/CbXhU05kOj4"
-  },
-  {
-    name: "Urban Ladder",
-    description: "Architectural visualization and 3D furniture modeling for e-commerce and marketing.",
-    logoUrl: "https://www.urbanladder.com/images/logo.png",
-    imageUrl: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=1958",
-    videoUrl: "https://www.youtube.com/embed/_lG_3RLhTPc"
+    videoUrl: "https://cdn.jsdelivr.net/gh/Pixoform2025/Pixoform@latest/src/assets/Noise_Render.mp4?v=1"
   },
 ];
 

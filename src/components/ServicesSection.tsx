@@ -22,6 +22,7 @@ import product from "../assets/services/product.webp";
 import arch from "../assets/services/arch.webp";
 import vfx from "../assets/services/vfx.webp";
 import vr from "../assets/services/vr.webp";
+import ar from "../assets/services/ar.webp";
 import interactive from "../assets/services/interactive.webp";
 import motion from "../assets/services/motion.webp";
 import cinematic from "../assets/services/cinematic.webp";
@@ -59,7 +60,7 @@ const services: Service[] = [
     description: "Realistic 3D interiors, exteriors, and urban environments for real estate and architectural firms.",
     icon: <Building2 className="w-6 h-6" />,
     image: arch,
-    video: "https://static.videezy.com/system/resources/previews/000/050/604/original/211104_05_Glow_4k_026.mp4"
+    video: "https://cdn.jsdelivr.net/gh/Pixoform2025/Pixoform@latest/src/assets/ArchViz_Render.mp4?v=1"
   },
   {
     id: "vfx",
@@ -71,11 +72,19 @@ const services: Service[] = [
   },
   {
     id: "vr",
-    title: "VR/AR Development",
-    description: "Immersive virtual and augmented reality experiences for enterprise, education, and entertainment.",
+    title: "VR Development",
+    description: "Immersive virtual reality experiences for enterprise, education and entertainment.",
     icon: <Smartphone className="w-6 h-6" />,
     image: vr,
-    video: "https://static.videezy.com/system/resources/previews/000/056/919/original/37.mp4"
+    video: "https://cdn.jsdelivr.net/gh/Pixoform2025/Pixoform@latest/src/assets/VR.mp4?v=1"
+  },
+  {
+    id: "ar",
+    title: "AR Development",
+    description: "Dynamic augmented reality experiences for advertisements, education and entertainment.",
+    icon: <PenTool className="w-6 h-6" />,
+    image: ar,
+    video: "https://cdn.jsdelivr.net/gh/Pixoform2025/Pixoform@latest/src/assets/AR.mp4?v=1"
   },
   {
     id: "interactive",
@@ -83,7 +92,7 @@ const services: Service[] = [
     description: "Web-based 3D configurators, simulations, and interactive product displays for enhanced user engagement.",
     icon: <Globe className="w-6 h-6" />,
     image: interactive,
-    video: "https://static.videezy.com/system/resources/previews/000/047/802/original/200819_03_Business_4k_002.mp4"
+    video: "https://cdn.jsdelivr.net/gh/Pixoform2025/Pixoform@latest/src/assets/Interactive_media.mp4?v=1"
   },
   {
     id: "motion",
@@ -99,7 +108,7 @@ const services: Service[] = [
     description: "Captivating game trailers, film title sequences, and promotional videos with cinematic quality.",
     icon: <Film className="w-6 h-6" />,
     image: cinematic,
-    video: "https://static.videezy.com/system/resources/previews/000/052/115/original/210728_02_SciFi_4k_029.mp4"
+    video: "https://cdn.jsdelivr.net/gh/Pixoform2025/Pixoform@latest/src/assets/Cinematic.mp4?v=1"
   },
   {
     id: "concept",
@@ -107,7 +116,7 @@ const services: Service[] = [
     description: "Original character creation, concept development, and asset design for games and films.",
     icon: <Brush className="w-6 h-6" />,
     image: concept,
-    video: "https://static.videezy.com/system/resources/previews/000/056/000/original/210903_03_Shapes_4k_044.mp4"
+    video: "https://cdn.jsdelivr.net/gh/Pixoform2025/Pixoform@latest/src/assets/Cinematic.mp4?v=1"
   },
   {
     id: "ad",
