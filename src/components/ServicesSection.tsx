@@ -33,6 +33,18 @@ import logo from "../assets/services/logo.webp";
 import broadcast from "../assets/services/broadcast.webp";
 import photography from "../assets/services/photography.webp";
 import explainer from "../assets/services/explainer.webp";
+import { useEffect } from "react";
+
+useEffect(() => {
+  services.forEach(service => {
+    if (service.video) {
+      const video = document.createElement("video");
+      video.src = service.video;
+      video.preload = "auto";
+    }
+  });
+}, []);
+
 
 
 
@@ -92,7 +104,7 @@ const services: Service[] = [
     description: "Web-based 3D configurators, simulations, and interactive product displays for enhanced user engagement.",
     icon: <Globe className="w-6 h-6" />,
     image: interactive,
-    video: "https://cdn.jsdelivr.net/gh/Pixoform2025/Pixoform@latest/src/assets/Interactive_media.mp4?v=1"
+    video: "https://cdn.jsdelivr.net/gh/Pixoform2025/Pixoform@latest/src/assets/InteractiveSeuquence.mp4?v=1"
   },
   {
     id: "motion",
@@ -148,7 +160,7 @@ const services: Service[] = [
     description: "Clear, engaging explainer animations that break down complex products, services, or concepts.",
     icon: <Coffee className="w-6 h-6" />,
     image: explainer,
-    video: "https://cdn.jsdelivr.net/gh/Pixoform2025/Pixoform@latest/src/assets/ExplanationVideo.mp4"
+    video: "https://cdn.jsdelivr.net/gh/Pixoform2025/Pixoform@latest/src/assets/ExplainerVideo.mp4"
   }
 ];
 
@@ -194,6 +206,7 @@ const ServicesSection: React.FC = () => {
                       autoPlay 
                       muted 
                       loop 
+                      preload="auto" // This line ensures preloading
                       className="w-full h-full object-cover"
                     />
                   ) : (
