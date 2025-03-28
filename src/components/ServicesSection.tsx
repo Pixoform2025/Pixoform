@@ -67,12 +67,20 @@ const services: Service[] = [
     video: "https://cdn.jsdelivr.net/gh/Pixoform2025/Pixoform@latest/src/assets/ArchViz_Render.mp4?v=2"
   },
   {
-    id: "vfx",
-    title: "VFX & CGI",
-    description: "Seamless visual effects integration including explosions, particle simulations, and digital creatures.",
-    icon: <Clapperboard className="w-6 h-6" />,
-    image: vfx,
-    video: "https://static.videezy.com/system/resources/previews/000/055/508/original/210305_04_Energy_4k_001.mp4"
+    id: "cinematic",
+    title: "Cinematics",
+    description: "Captivating game trailers, film title sequences, and promotional videos with cinematic quality.",
+    icon: <Film className="w-6 h-6" />,
+    image: cinematic,
+    video: "https://cdn.jsdelivr.net/gh/Pixoform2025/Pixoform@latest/src/assets/Cinematic_Render.mp4?v=2"
+  },
+  {
+    id: "concept",
+    title: "3D Concept & Character Design",
+    description: "Original character creation, concept development, and asset design for games and films.",
+    icon: <Brush className="w-6 h-6" />,
+    image: concept,
+    video: "https://cdn.jsdelivr.net/gh/Pixoform2025/Pixoform@latest/src/assets/Character_Render.mp4?v=2"
   },
   {
     id: "vr",
@@ -107,20 +115,12 @@ const services: Service[] = [
     video: "https://static.videezy.com/system/resources/previews/000/041/622/original/NEON-GEOMETRIC.mp4"
   },
   {
-    id: "cinematic",
-    title: "Cinematics",
-    description: "Captivating game trailers, film title sequences, and promotional videos with cinematic quality.",
-    icon: <Film className="w-6 h-6" />,
-    image: cinematic,
-    video: "https://cdn.jsdelivr.net/gh/Pixoform2025/Pixoform@latest/src/assets/Cinematic_Render.mp4?v=2"
-  },
-  {
-    id: "concept",
-    title: "3D Concept & Character Design",
-    description: "Original character creation, concept development, and asset design for games and films.",
-    icon: <Brush className="w-6 h-6" />,
-    image: concept,
-    video: "https://cdn.jsdelivr.net/gh/Pixoform2025/Pixoform@latest/src/assets/Character_Render.mp4?v=2"
+    id: "vfx",
+    title: "VFX & CGI",
+    description: "Seamless visual effects integration including explosions, particle simulations, and digital creatures.",
+    icon: <Clapperboard className="w-6 h-6" />,
+    image: vfx,
+    video: "https://static.videezy.com/system/resources/previews/000/055/508/original/210305_04_Energy_4k_001.mp4"
   },
   {
     id: "ad",
@@ -185,7 +185,7 @@ const ServicesSection: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-3 gap-10">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-2 gap-10">
           {services.map((service) => {
             const isHovered = hoveredService === service.id;
             

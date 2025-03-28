@@ -123,6 +123,25 @@ const ContactSection: React.FC = () => {
                 </div>
               </div>
             </div>
+
+            <div className={`${theme === 'dark' ? 'glass' : 'bg-white shadow-md'} rounded-2xl p-6 hover-lift transition-all duration-300`}>
+              <div className="flex items-start">
+                <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${theme === 'dark' ? 'glass' : 'bg-gray-100'} mr-4`}>
+                  <MessageSquare className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-medium mb-1">WhatsApp</h3>
+                  <a 
+                    href="https://wa.me/917045131964"
+                    className={`${theme === 'dark' ? 'text-white/70 hover:text-white' : 'text-gray-600 hover:text-gray-900'} transition-colors`}
+                    target="_blank" 
+                    rel="noreferrer"
+                  >
+                    Send a message
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
 
           <div className="lg:col-span-3">
@@ -144,7 +163,7 @@ const ContactSection: React.FC = () => {
                         ? 'bg-white/5 border border-white/10 focus:border-white/30' 
                         : 'bg-gray-50 border border-gray-200 focus:border-gray-300'
                     } focus:outline-none focus:ring-0 transition-all`}
-                    placeholder="John Doe"
+                    placeholder="Name"
                   />
                 </div>
 
@@ -164,7 +183,7 @@ const ContactSection: React.FC = () => {
                         ? 'bg-white/5 border border-white/10 focus:border-white/30' 
                         : 'bg-gray-50 border border-gray-200 focus:border-gray-300'
                     } focus:outline-none focus:ring-0 transition-all`}
-                    placeholder="john@example.com"
+                    placeholder="@gmail.com"
                   />
                 </div>
 

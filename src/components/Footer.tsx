@@ -39,7 +39,6 @@ const Footer: React.FC = () => {
             <ul className="space-y-2">
               <li><a href="#home" className="text-white/60 hover:text-white transition-colors">Home</a></li>
               <li><a href="#services" className="text-white/60 hover:text-white transition-colors">Services</a></li>
-              <li><a href="#gallery" className="text-white/60 hover:text-white transition-colors">Gallery</a></li>
               <li><a href="#clients" className="text-white/60 hover:text-white transition-colors">Clients</a></li>
               <li><a href="#contact" className="text-white/60 hover:text-white transition-colors">Contact</a></li>
             </ul>
@@ -67,6 +66,10 @@ const Footer: React.FC = () => {
               <li className="text-white/60">
                 <a href="tel:+917045131964" className="hover:text-white transition-colors">
                   +91 7045131964
+                </a>
+                <br />
+                <a href="tel:+7045198757" className="hover:text-white transition-colors">
+                  +91 7045198757
                 </a>
               </li>
             </ul>

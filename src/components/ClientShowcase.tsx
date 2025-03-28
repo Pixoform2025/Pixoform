@@ -33,7 +33,7 @@ const clients: Client[] = [
     description: "3D VR visualization and animations for educational content.",
     logoUrl: "https://robokart.com/wp-content/uploads/2020/06/robokart-logo.png",
     imageUrl: "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?q=80&w=1964",
-    videoUrl: "https://cdn.jsdelivr.net/gh/Pixoform2025/Pixoform@latest/src/assets/Robokart_Render.mp4?v=2"
+    videoUrl: "https://cdn.jsdelivr.net/gh/Pixoform2025/Pixoform@latest/src/assets/Robokart_VR_Render.mp4?v=2"
   },
   {
     name: "Noise",
@@ -46,7 +46,7 @@ const clients: Client[] = [
 
 
 
-const duplicatedClients = [...clients, ...clients, ...clients ];
+const duplicatedClients = [...clients, ...clients, ...clients];
 
 const ClientShowcase: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -156,23 +156,24 @@ const ClientShowcase: React.FC = () => {
             {duplicatedClients.map((client, index) => (
               <div
                 key={`${client.name}-${index}`}
-                className={`client-card flex-shrink-0 w-[300px] md:w-[350px] group ${theme === 'dark'
+                className={`client-card flex-shrink-0 w-[400px] md:w-[550px] h-[350px] md:h-[350px] flex flex-col justify-between group ${theme === 'dark'
                   ? 'glass rounded-2xl overflow-hidden transition-all duration-500 hover:glass-dark hover-lift hover-glow'
                   : 'bg-white rounded-2xl overflow-hidden shadow-md transition-all duration-500 hover:shadow-lg hover:-translate-y-1'
                   }`}
-                  onMouseEnter={(e) => {
-                    const video = e.currentTarget.querySelector("video");
-                    if (video) {
-                      video.currentTime = 0; // Restart video on hover
-                      video.play();
-                    }
-                  }}  
-                  onMouseLeave={(e) => {
-                    const video = e.currentTarget.querySelector("video");
-                    if (video) {
-                      video.pause();
-                    }
-                  }}  
+
+                onMouseEnter={(e) => {
+                  const video = e.currentTarget.querySelector("video");
+                  if (video) {
+                    video.currentTime = 0; // Restart video on hover
+                    video.play();
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  const video = e.currentTarget.querySelector("video");
+                  if (video) {
+                    video.pause();
+                  }
+                }}
               >
                 <div className="p-6">
                   <div className="flex items-center mb-4">
@@ -207,33 +208,33 @@ const ClientShowcase: React.FC = () => {
         </div>
       </div>
 
-{/* Video Popup Modal */}
-{selectedClient && (
-  <div 
-    className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md" 
-    onClick={() => setSelectedClient(null)}
-  >
-    <div 
-      className="relative w-[70%] max-w-6xl bg-black rounded-lg overflow-hidden"
-      onClick={(e) => e.stopPropagation()}
-    >
-      <button 
-        className="absolute top-4 right-4 z-10 p-2 text-white bg-black/50 rounded-full hover:bg-black/80"
-        onClick={() => setSelectedClient(null)}
-      >
-        <X className="w-6 h-6" />
-      </button>
-      
-      {/* Replaced iframe with a normal video player */}
-      <video 
-        src={selectedClient.videoUrl} 
-        controls 
-        autoPlay 
-        className="w-full h-full object-cover"
-      />
-    </div>
-  </div>
-)}
+      {/* Video Popup Modal */}
+      {selectedClient && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md"
+          onClick={() => setSelectedClient(null)}
+        >
+          <div
+            className="relative w-[70%] max-w-6xl bg-black rounded-lg overflow-hidden"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              className="absolute top-4 right-4 z-10 p-2 text-white bg-black/50 rounded-full hover:bg-black/80"
+              onClick={() => setSelectedClient(null)}
+            >
+              <X className="w-6 h-6" />
+            </button>
+
+            {/* Replaced iframe with a normal video player */}
+            <video
+              src={selectedClient.videoUrl}
+              controls
+              autoPlay
+              className="w-full h-full object-cover"
+            />
+          </div>
+        </div>
+      )}
 
 
     </section>
