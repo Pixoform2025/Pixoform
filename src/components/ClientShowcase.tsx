@@ -19,28 +19,28 @@ const clients: Client[] = [
     description: "3D visualization for Cipla's product launches & Event.",
     logoUrl: CiplaLogo,
     imageUrl: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=2070",
-    videoUrl: "https://cdn.jsdelivr.net/gh/Pixoform2025/Pixoform@latest/src/assets/Cipla_Render.mp4?v=1"
+    videoUrl: "https://cdn.jsdelivr.net/gh/Pixoform2025/Pixoform@latest/src/assets/Cipla_Render.mp4?v=2"
   },
   {
     name: "RD Pro Earphones",
     description: "High-end product visualization and animation for premium audio hardware.",
     logoUrl: "https://rdpro.in/wp-content/uploads/2021/06/rd-logo.png",
     imageUrl: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?q=80&w=1964",
-    videoUrl: "https://cdn.jsdelivr.net/gh/Pixoform2025/Pixoform@latest/src/assets/Earbuds_Render.mp4?v=1"
+    videoUrl: "https://cdn.jsdelivr.net/gh/Pixoform2025/Pixoform@latest/src/assets/Earbuds_Render.mp4?v=2"
   },
   {
     name: "Robokart",
     description: "3D VR visualization and animations for educational content.",
     logoUrl: "https://robokart.com/wp-content/uploads/2020/06/robokart-logo.png",
     imageUrl: "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?q=80&w=1964",
-    videoUrl: "https://cdn.jsdelivr.net/gh/Pixoform2025/Pixoform@latest/src/assets/Robokart_Render.mp4?v=1"
+    videoUrl: "https://cdn.jsdelivr.net/gh/Pixoform2025/Pixoform@latest/src/assets/Robokart_Render.mp4?v=2"
   },
   {
     name: "Noise",
     description: "Product visualization and promotional content for smart wearables and audio devices.",
     logoUrl: "https://upload.wikimedia.org/wikipedia/commons/5/51/Noise_Logo.png",
     imageUrl: "https://images.unsplash.com/photo-1546868871-7041f2a55e12?q=80&w=1964",
-    videoUrl: "https://cdn.jsdelivr.net/gh/Pixoform2025/Pixoform@latest/src/assets/Noise_Render.mp4?v=1"
+    videoUrl: "https://cdn.jsdelivr.net/gh/Pixoform2025/Pixoform@latest/src/assets/Noise_Render.mp4?v=2"
   },
 ];
 

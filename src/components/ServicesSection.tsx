@@ -56,7 +56,7 @@ const services: Service[] = [
     description: "High-end promotional visuals for consumer electronics, automotive, and lifestyle products.",
     icon: <Layers className="w-6 h-6" />,
     image: product,
-    video: "https://cdn.jsdelivr.net/gh/Pixoform2025/Pixoform@latest/src/assets/Earbuds_Render.mp4?v=1"
+    video: "https://cdn.jsdelivr.net/gh/Pixoform2025/Pixoform@latest/src/assets/Earbuds_Render.mp4?v=2"
   },
   {
     id: "arch",
@@ -64,7 +64,7 @@ const services: Service[] = [
     description: "Realistic 3D interiors, exteriors, and urban environments for real estate and architectural firms.",
     icon: <Building2 className="w-6 h-6" />,
     image: arch,
-    video: "https://cdn.jsdelivr.net/gh/Pixoform2025/Pixoform@latest/src/assets/ArchViz_Render.mp4?v=1"
+    video: "https://cdn.jsdelivr.net/gh/Pixoform2025/Pixoform@latest/src/assets/ArchViz_Render.mp4?v=2"
   },
   {
     id: "vfx",
@@ -80,7 +80,7 @@ const services: Service[] = [
     description: "Immersive virtual reality experiences for enterprise, education and entertainment.",
     icon: <Smartphone className="w-6 h-6" />,
     image: vr,
-    video: "https://cdn.jsdelivr.net/gh/Pixoform2025/Pixoform@latest/src/assets/VR.mp4?v=1"
+    video: "https://cdn.jsdelivr.net/gh/Pixoform2025/Pixoform@latest/src/assets/VR.mp4?v=2"
   },
   {
     id: "ar",
@@ -88,7 +88,7 @@ const services: Service[] = [
     description: "Dynamic augmented reality experiences for advertisements, education and entertainment.",
     icon: <PenTool className="w-6 h-6" />,
     image: ar,
-    video: "https://cdn.jsdelivr.net/gh/Pixoform2025/Pixoform@latest/src/assets/AR.mp4?v=1"
+    video: "https://cdn.jsdelivr.net/gh/Pixoform2025/Pixoform@latest/src/assets/AR.mp4?v=2"
   },
   {
     id: "interactive",
@@ -96,7 +96,7 @@ const services: Service[] = [
     description: "Web-based 3D configurators, simulations, and interactive product displays for enhanced user engagement.",
     icon: <Globe className="w-6 h-6" />,
     image: interactive,
-    video: "https://cdn.jsdelivr.net/gh/Pixoform2025/Pixoform@latest/src/assets/InteractiveSeuquence.mp4?v=1"
+    video: "https://cdn.jsdelivr.net/gh/Pixoform2025/Pixoform@latest/src/assets/InteractiveSeuquence.mp4?v=2"
   },
   {
     id: "motion",
@@ -112,7 +112,7 @@ const services: Service[] = [
     description: "Captivating game trailers, film title sequences, and promotional videos with cinematic quality.",
     icon: <Film className="w-6 h-6" />,
     image: cinematic,
-    video: "https://cdn.jsdelivr.net/gh/Pixoform2025/Pixoform@latest/src/assets/Cinematic_Render.mp4?v=1"
+    video: "https://cdn.jsdelivr.net/gh/Pixoform2025/Pixoform@latest/src/assets/Cinematic_Render.mp4?v=2"
   },
   {
     id: "concept",
@@ -120,7 +120,7 @@ const services: Service[] = [
     description: "Original character creation, concept development, and asset design for games and films.",
     icon: <Brush className="w-6 h-6" />,
     image: concept,
-    video: "https://cdn.jsdelivr.net/gh/Pixoform2025/Pixoform@latest/src/assets/Character_Render.mp4?v=1"
+    video: "https://cdn.jsdelivr.net/gh/Pixoform2025/Pixoform@latest/src/assets/Character_Render.mp4?v=2"
   },
   {
     id: "ad",
