@@ -128,7 +128,7 @@ const services: Service[] = [
     description: "High-impact promotional content, explainer videos, and brand identity animations.",
     icon: <VideoIcon className="w-6 h-6" />,
     image: ad,
-    video: "https://static.videezy.com/system/resources/previews/000/055/996/original/VITALIC-PROMO-RETRO.mp4"
+    video: "https://cdn.jsdelivr.net/gh/Pixoform2025/Pixoform@latest/src/assets/Advertising.mp4"
   },
   {
     id: "logo",
