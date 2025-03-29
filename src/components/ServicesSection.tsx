@@ -195,7 +195,7 @@ const ServicesSection: React.FC = () => {
                 className={`relative rounded-2xl overflow-hidden transition-all duration-500 group cursor-pointer ${
                   hoveredService === null ? 'h-[200px]' : 
                   isHovered ? 'h-[350px] scale-110 z-20' : 
-                  'h-[250px] scale-90 opacity-20'
+                  'h-[200px] scale-90 opacity-20'
                 }`}
                 onMouseEnter={() => setHoveredService(service.id)}
                 onMouseLeave={() => setHoveredService(null)}
