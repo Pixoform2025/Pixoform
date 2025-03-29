@@ -120,7 +120,7 @@ const services: Service[] = [
     description: "Seamless visual effects integration including explosions, particle simulations, and digital creatures.",
     icon: <Clapperboard className="w-6 h-6" />,
     image: vfx,
-    video: "https://cdn.jsdelivr.net/gh/Pixoform2025/Pixoform@latest/src/assets/VFX.mp4"
+    video: "https://cdn.jsdelivr.net/gh/Pixoform2025/Pixoform@latest/src/assets/Vfx_Render.mp4"
   },
   {
     id: "ad",
