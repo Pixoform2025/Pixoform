@@ -201,7 +201,7 @@ const ServicesSection: React.FC = () => {
                 onMouseLeave={() => setHoveredService(null)}
               >
                 {/* Background image or video */}
-                <div className="absolute inset-0 w-full h-full">
+                <div className="absolute inset-0 w-full h-full relative rounded-2xl overflow-hidden">
                   {isHovered && service.video ? (
                     <video 
                       src={service.video} 

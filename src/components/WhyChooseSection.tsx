@@ -19,7 +19,7 @@ interface Stat {
 const features: Feature[] = [
   {
     icon: <Cpu className="w-6 h-6" />,
-    title: "Cutting-Edge Technology",
+    title: "Industry Standard Technology",
     description: "Utilizing the latest in real-time rendering with Unreal Engine and Unity for exceptional quality.",
   },
   {
