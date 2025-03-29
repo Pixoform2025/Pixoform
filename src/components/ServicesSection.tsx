@@ -112,7 +112,7 @@ const services: Service[] = [
     description: "Dynamic interface animations, title sequences, and motion design for digital products and videos.",
     icon: <Sparkles className="w-6 h-6" />,
     image: motion,
-    video: "https://cdn.jsdelivr.net/gh/Pixoform2025/Pixoform@latest/src/assets/Motion_graphics.mp4"
+    video: "https://cdn.jsdelivr.net/gh/Pixoform2025/Pixoform@latest/src/assets/Motion_graphic.mp4"
   },
   {
     id: "vfx",
