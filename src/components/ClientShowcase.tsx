@@ -131,13 +131,18 @@ const ClientShowcase: React.FC = () => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target instanceof HTMLVideoElement && entry.target.play();
+            if (entry.target instanceof HTMLVideoElement) {
+              entry.target.play().catch(() => { }); // ignore play interruption
+            }
           } else {
-            entry.target instanceof HTMLVideoElement && entry.target.pause();
+            if (entry.target instanceof HTMLVideoElement) {
+              entry.target.pause();
+            }
           }
+
         });
       },
-      { threshold: 0.5 }
+      { threshold: 0}
     );
 
     videos.forEach((video) => observer.observe(video));
