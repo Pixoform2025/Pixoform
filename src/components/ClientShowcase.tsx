@@ -4,7 +4,6 @@ import { X } from "lucide-react";
 import CiplaLogo from "../assets/Cipla_logo.png";
 import Earbuds_Render from "../assets/Earbuds_Render.mp4";
 
-
 interface Client {
   name: string;
   description: string;
@@ -43,8 +42,6 @@ const clients: Client[] = [
     videoUrl: "https://cdn.jsdelivr.net/gh/Pixoform2025/Pixoform@latest/src/assets/Noise_Render.mp4"
   },
 ];
-
-
 
 const duplicatedClients = [...clients, ...clients, ...clients];
 
@@ -86,7 +83,7 @@ const ClientShowcase: React.FC = () => {
     return () => cancelAnimationFrame(animationFrame);
   }, [isScrolling]);
 
-  const draggingRef = useRef(false); // Track dragging state independently
+  const draggingRef = useRef(false);
 
   const handleMouseDown = (e: React.MouseEvent) => {
     setIsScrolling(false);
@@ -102,10 +99,8 @@ const ClientShowcase: React.FC = () => {
     draggingRef.current = false;
     setTimeout(() => {
       if (!draggingRef.current) setIsScrolling(true);
-    }, 2000); // Auto restart after 2 seconds
+    }, 2000);
   };
-
-
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!isDragging) return;
@@ -117,20 +112,40 @@ const ClientShowcase: React.FC = () => {
     }
   };
 
-
-
   const handleScrollBarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (scrollRef.current) {
       setIsScrolling(false);
       scrollRef.current.scrollLeft = Number(e.target.value);
-      setTimeout(() => setIsScrolling(true), 2000); // Reduced timeout to 2 seconds
+      setTimeout(() => setIsScrolling(true), 2000);
     }
   };
-
 
   const showVideoPopup = (client: Client) => {
     setSelectedClient(client);
   };
+
+  // IntersectionObserver to auto play/pause videos
+  useEffect(() => {
+    const videos = document.querySelectorAll<HTMLVideoElement>(".client-video");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target instanceof HTMLVideoElement && entry.target.play();
+          } else {
+            entry.target instanceof HTMLVideoElement && entry.target.pause();
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    videos.forEach((video) => observer.observe(video));
+
+    return () => {
+      videos.forEach((video) => observer.unobserve(video));
+    };
+  }, [duplicatedClients]);
 
   return (
     <section id="clients" className={`py-20 ${theme === 'dark' ? 'bg-gradient-to-b from-black to-slate-900' : 'bg-gradient-to-b from-white to-gray-100'}`}>
@@ -160,32 +175,14 @@ const ClientShowcase: React.FC = () => {
                   ? 'glass rounded-2xl overflow-hidden transition-all duration-500 hover:glass-dark hover-lift hover-glow'
                   : 'bg-white rounded-2xl overflow-hidden shadow-md transition-all duration-500 hover:shadow-lg hover:-translate-y-1'
                   }`}
-
-
-/*                  onMouseEnter={(e) => {
-                  const video = e.currentTarget.querySelector("video");
-                  if (video) {
-                    video.currentTime = 0; // Restart video on hover
-                    video.play();
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  const video = e.currentTarget.querySelector("video");
-                  if (video) {
-                    video.pause();
-                  }
-                }}
- */
               >
                 <div className="p-6">
                   <div className="flex items-center mb-4">
-                    {/*<img src={client.logoUrl} alt={client.name} className="h-8 w-auto mr-4" />*/}
                     <h2 className="text-xl font-bold">{client.name}</h2>
                   </div>
                   <p className={theme === 'dark' ? 'text-white/70 mb-6' : 'text-gray-600 mb-6'}>{client.description}</p>
                 </div>
 
-                {/* Video Preview on Hover */}
                 <div
                   className="relative h-48 overflow-hidden cursor-pointer"
                   onClick={() => showVideoPopup(client)}
@@ -198,14 +195,12 @@ const ClientShowcase: React.FC = () => {
 
                   <video
                     src={client.videoUrl}
-                    className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
+                    className="client-video absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
                     muted
-                    autoPlay
                     loop
                     playsInline
+                    preload="none"
                   />
-
-
                 </div>
               </div>
             ))}
@@ -213,7 +208,6 @@ const ClientShowcase: React.FC = () => {
         </div>
       </div>
 
-      {/* Video Popup Modal */}
       {selectedClient && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md"
@@ -230,7 +224,6 @@ const ClientShowcase: React.FC = () => {
               <X className="w-6 h-6" />
             </button>
 
-            {/* Replaced iframe with a normal video player */}
             <video
               src={selectedClient.videoUrl}
               controls
@@ -240,11 +233,8 @@ const ClientShowcase: React.FC = () => {
           </div>
         </div>
       )}
-
-
     </section>
   );
 };
-
 
 export default ClientShowcase;
